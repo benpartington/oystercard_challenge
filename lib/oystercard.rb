@@ -8,8 +8,11 @@ class Oystercard
     end
     
     def topup(amount)
-      if ((@balance + amount) > LIMIT) ? raise_error : #something else
-      @balance += amount
+      if (@balance + amount) > LIMIT
+        raise_error "limit exceeded"
+      else
+        @balance += amount
+      end
     end
 
 
