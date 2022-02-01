@@ -4,3 +4,10 @@ Step 6
 #Create a new oyster card (in irb)
 #Top up the Oyster card by 100
 #Expect an error
+
+Step 7
+
+#create new oystercard
+#add funds
+#use deduct to take money off card
+#expect error in irb
