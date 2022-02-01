@@ -1,6 +1,6 @@
 Step 6
 
-#Add a limit to Oyster Card = 90
-#Create a new oyster card
+#Add a limit to Oyster Card = 90 (in oystercard.rb)
+#Create a new oyster card (in irb)
 #Top up the Oyster card by 100
 #Expect an error
