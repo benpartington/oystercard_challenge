@@ -35,13 +35,24 @@ describe Oystercard do
       oystercard.touch_in
       expect( oystercard.in_journey? ).to eq true
     end
-  end
-
-  describe in_journey do
-    it 'should tell us if the user is on a journey' do
-      card.touch_in
-      expect card.journey to eq true
+    it 'should error if insufficient funds' do 
+    oystercard.touch_in
+    expect{ oystercard.balance }.to raise_error "insufficient funds"
     end
   end
-  
+
+  describe "#in_journey?" do
+    it 'should tell us if the user is on a journey' do
+      oystercard.touch_in
+      expect( oystercard.in_journey?).to eq true
+    end
+  end
+
+  describe "#touch_out" do
+    it 'should touch out' do
+      oystercard.touch_in
+      oystercard.touch_out
+      expect( oystercard.in_journey? ).to eq false
+    end    
+  end
 end

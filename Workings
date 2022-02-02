@@ -21,3 +21,10 @@ Step 8
 #sets injourney to true
 #touch out 
 sets injourney to false
+
+step 9
+
+#in irb:
+#create new oystercard
+#touch_in
+#fail - insufficient funds
