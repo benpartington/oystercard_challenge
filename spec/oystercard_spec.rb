@@ -7,17 +7,17 @@ describe Oystercard do
       expect(oystercard.balance).to eq(0)
     end
   
-  describe "#topup" do
-    it { is_expected.to respond_to(:topup).with(1).argument }
+  describe "#top_up" do
+    it { is_expected.to respond_to(:top_up).with(1).argument }
 
     it "should add money to card" do
-      expect{ oystercard.topup(5) }.to change{ oystercard.balance }.by(5)
+      expect{ oystercard.top_up(5) }.to change{ oystercard.balance }.by(5)
     end
 
-    it "throw an error if balance exceeds 90" do
+    it "throw an error if balance exceeds £90" do
       limit = Oystercard::LIMIT
-      oystercard.topup(limit)
-      expect{ oystercard.topup 1 }.to raise_error "balance exceeded limit of #{limit}"
+      oystercard.top_up(limit)
+      expect{ oystercard.top_up(1) }.to raise_error "balance exceeded limit of #{limit}"
     end
   end
 
@@ -25,10 +25,23 @@ describe Oystercard do
     it { is_expected.to respond_to(:deduct).with(1).argument }
 
     it 'should deduct money from card' do
-      oystercard.topup(10)
+      oystercard.top_up(10)
       expect{ oystercard.deduct(5) }.to change{ oystercard.balance }.by(-5)
     end
-  end  
+  end
+  
+  describe "#touch_in" do
+    it 'should touch in' do
+      oystercard.touch_in
+      expect( oystercard.in_journey? ).to eq true
+    end
+  end
+
+  describe in_journey do
+    it 'should tell us if the user is on a journey' do
+      card.touch_in
+      expect card.journey to eq true
+    end
+  end
+  
 end
-
-

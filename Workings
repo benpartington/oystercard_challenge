@@ -11,3 +11,13 @@ Step 7
 #add funds
 #use deduct to take money off card
 #expect error in irb
+
+Step 8
+
+#in irb:
+#create new oystercard
+#add funds
+#touch in
+#sets injourney to true
+#touch out 
+sets injourney to false
