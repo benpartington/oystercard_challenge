@@ -32,17 +32,20 @@ describe Oystercard do
   
   describe "#touch_in" do
     it 'should touch in' do
+      oystercard.top_up(5)
       oystercard.touch_in
       expect( oystercard.in_journey? ).to eq true
     end
-    it 'should error if insufficient funds' do 
-    oystercard.touch_in
-    expect{ oystercard.balance }.to raise_error "insufficient funds"
+
+    it 'should error if insufficient funds' do
+      min = Oystercard::MIN 
+      expect{ oystercard.touch_in }.to raise_error "insufficient funds, balance less than #{min}"
     end
   end
 
   describe "#in_journey?" do
     it 'should tell us if the user is on a journey' do
+      oystercard.top_up(5)
       oystercard.touch_in
       expect( oystercard.in_journey?).to eq true
     end
@@ -50,6 +53,7 @@ describe Oystercard do
 
   describe "#touch_out" do
     it 'should touch out' do
+      oystercard.top_up(5)
       oystercard.touch_in
       oystercard.touch_out
       expect( oystercard.in_journey? ).to eq false
