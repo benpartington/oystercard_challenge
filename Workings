@@ -28,3 +28,12 @@ step 9
 #create new oystercard
 #touch_in
 #fail - insufficient funds
+
+step 10
+
+#in irb:
+#create new oystercard
+#top_up(5)
+#touch_in
+#touch_out
+#card.balance(4)

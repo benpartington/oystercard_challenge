@@ -21,14 +21,14 @@ describe Oystercard do
     end
   end
 
-  describe "#deduct" do
-    it { is_expected.to respond_to(:deduct).with(1).argument }
+  # describe "#deduct" do
+  #   it { is_expected.to respond_to(:deduct).with(1).argument }
 
-    it 'should deduct money from card' do
-      oystercard.top_up(10)
-      expect{ oystercard.deduct(5) }.to change{ oystercard.balance }.by(-5)
-    end
-  end
+  #   it 'should deduct money from card' do
+  #     oystercard.top_up(10)
+  #     expect{ oystercard.deduct(5) }.to change{ oystercard.balance }.by(-5)
+  #   end
+  # end
   
   describe "#touch_in" do
     it 'should touch in' do
@@ -58,5 +58,12 @@ describe Oystercard do
       oystercard.touch_out
       expect( oystercard.in_journey? ).to eq false
     end    
+    it 'should deduct on touch out' do
+      oystercard.top_up(5)
+      oystercard.touch_in
+      oystercard.touch_out
+      min = Oystercard::MIN
+      expect{ oystercard.touch_out }.to change{ oystercard.balance }.by(-min)
+    end
   end
 end
