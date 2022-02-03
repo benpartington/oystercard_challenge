@@ -2,6 +2,8 @@ require_relative '../lib/oystercard.rb'
 
 describe Oystercard do
   subject(:oystercard) { described_class.new }
+  let(:kings_cross) { double("King's Cross") }
+
     
     it 'card has default balance of 0' do
       expect(oystercard.balance).to eq(0)
@@ -22,9 +24,10 @@ describe Oystercard do
   end
   
   describe "#touch_in" do
-    
     it 'should remember the entry station after touch in' do
-
+      oystercard.top_up(5)
+      oystercard.touch_in(kings_cross)
+      expect(oystercard.entry_station).to eq(kings_cross)
     end
 
     it 'should touch in' do

@@ -1,6 +1,7 @@
 class Oystercard
     attr_reader :balance
     attr_reader :in_journey
+    attr_reader :entry_station
 
     LIMIT = 90
     MIN = 1
@@ -18,9 +19,10 @@ class Oystercard
       @in_journey
     end
 
-    def touch_in
+    def touch_in(entry_station)
+      @entry_station = entry_station
       raise "insufficient funds, balance less than #{MIN}" if balance < MIN
-        @in_journey = true
+      @in_journey = true
     end
 
     def touch_out
