@@ -3,7 +3,7 @@ require_relative '../lib/oystercard.rb'
 describe Oystercard do
   subject(:oystercard) { described_class.new }
   let(:kings_cross) { double("King's Cross") }
-
+  let(:bank) { double("Bank") }
     
     it 'card has default balance of 0' do
       expect(oystercard.balance).to eq(0)
@@ -54,22 +54,29 @@ describe Oystercard do
     it 'should touch out' do
       oystercard.top_up(5)
       oystercard.touch_in(:kings_cross)
-      oystercard.touch_out
+      oystercard.touch_out(:bank)
       expect( oystercard.in_journey? ).to eq false
     end 
+
+    it 'should remember the exit station after touch out' do
+      oystercard.top_up(5)
+      oystercard.touch_in(:kings_cross)
+      oystercard.touch_out(:bank)
+      expect(oystercard.exit_station).to eq(:bank)
+    end
 
     it 'should deduct on touch out' do
       oystercard.top_up(5)
       oystercard.touch_in(:kings_cross)
-      oystercard.touch_out
+      oystercard.touch_out(:bank)
       min = Oystercard::MIN
-      expect{ oystercard.touch_out }.to change{ oystercard.balance }.by(-min)
+      expect{ oystercard.touch_out(:bank) }.to change{ oystercard.balance }.by(-min)
     end
 
     it 'should set entry station to nil after touch out' do
       oystercard.top_up(5)
       oystercard.touch_in(:kings_cross)
-      oystercard.touch_out
+      oystercard.touch_out(:bank)
       expect(oystercard.entry_station).to eq(nil)
     end
   end

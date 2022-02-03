@@ -56,3 +56,11 @@ step 11
 # update touch out method to set entry station to nil
 # remove the in_journey varibale 
 # refactor
+
+step 12
+#in irb
+#create new oystercard
+#top_up(5)
+#touch_in(arg)
+#touch_out(arg)
+#card.history
