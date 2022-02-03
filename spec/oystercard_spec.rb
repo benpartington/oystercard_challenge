@@ -22,6 +22,11 @@ describe Oystercard do
   end
   
   describe "#touch_in" do
+    
+    it 'should remember the entry station after touch in' do
+
+    end
+
     it 'should touch in' do
       oystercard.top_up(5)
       oystercard.touch_in
@@ -57,4 +62,7 @@ describe Oystercard do
       expect{ oystercard.touch_out }.to change{ oystercard.balance }.by(-min)
     end
   end
+
+  
+
 end

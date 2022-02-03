@@ -37,3 +37,22 @@ step 10
 #touch_in
 #touch_out
 #card.balance(4)
+
+step 11
+#in irb:
+#create new oystercard
+#top_up(5)
+#touch_in
+#touch_out
+#card.entry_station
+
+step 11
+# test expected functionality in IRB done
+# write rspec test using a double 
+# update code to to accept entry_station 
+# review existing rspec tests and update, to accept a touch in argument
+# write a rspec test to display the entry station
+# update code to display the entry station with attr reader
+# update touch out method to set entry station to nil
+# remove the in_journey varibale 
+# refactor
