@@ -80,4 +80,24 @@ describe Oystercard do
       expect(oystercard.entry_station).to eq(nil)
     end
   end
+  
+  it "should store a journey as a hash" do
+    test_journey = {:entry_station => :kings_cross, :exit_station => :bank}
+
+    oystercard.top_up(5)
+    oystercard.touch_in(:kings_cross)
+    oystercard.touch_out(:bank)
+    expect(oystercard.journey).to eq(test_journey)
+  end
+
+  it "touching in and out should create one journey" do
+    oystercard.top_up(5)
+    oystercard.touch_in(:kings_cross)
+    oystercard.touch_out(:bank)
+    expect(oystercard.history.length).to eq(1)
+  end
+
+  it "should have an empty list of journeys by default" do
+    expect(oystercard.history).to be_empty
+  end
 end
