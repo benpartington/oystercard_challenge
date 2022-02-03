@@ -20,15 +20,6 @@ describe Oystercard do
       expect{ oystercard.top_up(1) }.to raise_error "balance exceeded limit of #{limit}"
     end
   end
-
-  # describe "#deduct" do
-  #   it { is_expected.to respond_to(:deduct).with(1).argument }
-
-  #   it 'should deduct money from card' do
-  #     oystercard.top_up(10)
-  #     expect{ oystercard.deduct(5) }.to change{ oystercard.balance }.by(-5)
-  #   end
-  # end
   
   describe "#touch_in" do
     it 'should touch in' do
