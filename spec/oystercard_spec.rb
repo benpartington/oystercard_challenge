@@ -2,8 +2,8 @@ require_relative '../lib/oystercard.rb'
 
 describe Oystercard do
   subject(:oystercard) { described_class.new }
-  let(:kings_cross) { double("King's Cross") }
-  let(:bank) { double("Bank") }
+  let(:kings_cross) { Station.new("King's Cross", 1) }
+  let(:bank) { Station.new("Bank", 1) }
     
     it 'card has default balance of 0' do
       expect(oystercard.balance).to eq(0)
