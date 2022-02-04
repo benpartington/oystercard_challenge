@@ -1,7 +1,8 @@
 require_relative './station.rb'
 
 class Oystercard
-    attr_reader :balance, :entry_station, :history
+    attr_reader :balance, :history
+    # attr_reader :entry_station
     attr_accessor :journey
 
     LIMIT = 90
@@ -24,7 +25,7 @@ class Oystercard
 
     def touch_in(entry_station)
       raise "insufficient funds, balance less than #{MIN}" if balance < MIN
-      @entry_station = entry_station
+      # @entry_station = entry_station
       journey[:entry_station] = @entry_station
     end
 
