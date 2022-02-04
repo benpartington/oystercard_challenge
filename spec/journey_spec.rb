@@ -14,11 +14,17 @@ describe Journey do
   end
 
   describe "#complete?" do
-
+    it "returns true when the journey is complete" do
+      journey.start("Bank")
+      journey.finish("Oval")
+      expect(journey.complete?).to eq true
+    end
   end
 
   describe "#fare" do
-
+    it "charges penalty fare if you touch in twice" do
+      journey.start("Bank")
+      expect(journey.start).to change{ @balance }.by(PENALTY_CHARGE)
+    end
   end
-
 end

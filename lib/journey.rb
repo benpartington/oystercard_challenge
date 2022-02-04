@@ -9,19 +9,14 @@ class Journey
     def initialize 
       @entry_station = nil
       @exit_station = nil
-      @journey = {}
-
     end
 
     def start(entry_station)
       @entry_station = entry_station
-      journey[:entry_station] = @entry_station
     end
 
     def finish(exit_station)
       @exit_station = exit_station
-      journey[:exit_station] = exit_station
-      @entry_station = nil
     end
 
     def fare
@@ -31,11 +26,9 @@ class Journey
         PENALTY_CHARGE
       end
     end
-
-      private
       
     def complete?
-      @journey.length == 2
+      (@entry_station != nil) && (@exit_station != nil)
     end
 
 end

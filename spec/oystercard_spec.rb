@@ -32,12 +32,6 @@ describe Oystercard do
         oystercard.touch_in(:kings_cross)
         expect( oystercard.in_journey? ).to eq true
       end
-      
-      it 'should remember the entry station' do
-        oystercard.top_up(5)
-        oystercard.touch_in(:kings_cross)
-        expect(oystercard.entry_station).to eq(:kings_cross)
-      end
     end
 
     context "insufficient funds" do
@@ -71,22 +65,18 @@ describe Oystercard do
 
       it 'should deduct funds' do
         min = Oystercard::MIN
-        expect{ oystercard.touch_out(:bank) }.to change{ oystercard.balance }.by(-min)
-      end
-
-      it 'should set entry station to nil' do
-        expect(oystercard.entry_station).to eq(nil)
+        expect{ oystercard.touch_out(bank) }.to change{ oystercard.balance }.by(-min)
       end
     end
   end
   
-  it "should store a journey as a hash" do
+  it "should store a journey as a Journey object" do
     test_journey = {:entry_station => :kings_cross, :exit_station => :bank}
 
     oystercard.top_up(5)
     oystercard.touch_in(:kings_cross)
     oystercard.touch_out(:bank)
-    expect(oystercard.journey).to eq(test_journey)
+    expect(oystercard.history).to eq(test_journey)
   end
 
   it "touching in and out should create one journey" do
