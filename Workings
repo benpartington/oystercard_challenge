@@ -58,9 +58,18 @@ step 11
 # refactor
 
 step 12
-#in irb
-#create new oystercard
-#top_up(5)
-#touch_in(arg)
-#touch_out(arg)
-#card.history
+# in irb
+# create new oystercard
+# top_up(5)
+# touch_in(arg)
+# touch_out(arg)
+# card.history
+
+step 13
+# in irb
+# create a new station instance
+# bank = Station.new(bank, 1)
+# bank.zone
+# return 1
+# bank.name
+# return "bank"

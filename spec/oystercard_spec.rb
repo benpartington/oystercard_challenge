@@ -58,33 +58,23 @@ describe Oystercard do
 
   describe "#touch_out" do
     context "after touch out" do
-  
-      it 'should touch out' do
+
+      before(:each) do
         oystercard.top_up(5)
         oystercard.touch_in(:kings_cross)
         oystercard.touch_out(:bank)
+      end
+
+      it 'should touch out' do
         expect( oystercard.in_journey? ).to eq false
       end 
 
-      it 'should remember the exit station' do
-        oystercard.top_up(5)
-        oystercard.touch_in(:kings_cross)
-        oystercard.touch_out(:bank)
-        expect(oystercard.exit_station).to eq(:bank)
-      end
-
       it 'should deduct funds' do
-        oystercard.top_up(5)
-        oystercard.touch_in(:kings_cross)
-        oystercard.touch_out(:bank)
         min = Oystercard::MIN
         expect{ oystercard.touch_out(:bank) }.to change{ oystercard.balance }.by(-min)
       end
 
       it 'should set entry station to nil' do
-        oystercard.top_up(5)
-        oystercard.touch_in(:kings_cross)
-        oystercard.touch_out(:bank)
         expect(oystercard.entry_station).to eq(nil)
       end
     end
