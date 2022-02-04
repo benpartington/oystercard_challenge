@@ -1,6 +1,8 @@
 require_relative './station.rb'
+require_relative './oystercard.rb'
 
 class Journey
+  attr_reader :journey, :entry_station, :exit_station
 
   PENALTY_CHARGE = 6
 
@@ -16,7 +18,7 @@ class Journey
       journey[:entry_station] = @entry_station
     end
 
-    def finish
+    def finish(exit_station)
       @exit_station = exit_station
       journey[:exit_station] = exit_station
       @entry_station = nil
@@ -24,7 +26,7 @@ class Journey
 
     def fare
       if complete?
-        Osytercard::MIN
+        Oystercard::MIN
       else
         PENALTY_CHARGE
       end
@@ -33,7 +35,7 @@ class Journey
       private
       
     def complete?
-      (@entry_station && exit_station) != nil
+      @journey.length == 2
     end
 
 end
